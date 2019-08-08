@@ -1,0 +1,23 @@
+#use get_helm.sh to install chartmoseum
+
+
+#create a systemd: 
+[root@hzometheus02 chartmuseum]# cat /etc/systemd/system/chartmuseum.service 
+[Unit]
+Description=Helm Chartmuseum
+Documentation=https://chartmuseum.com/
+
+[Service]
+ExecStart=/opt/chartmuseum/startup.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+
+#create a startup shellscript:
+[root@hzometheus02 chartmuseum]# cat startup.sh 
+#!/bin/bash
+cd /opt/chartmuseum
+./chartmuseum --debug --port=3080 --storage="local" --storage-local-rootdir="./chartstorage"

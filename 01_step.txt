@@ -1,0 +1,9 @@
+specify a Role and RoleBinding to limit Tiller’s scope to a particular namespace:
+
+$ kubectl create namespace tiller-world
+namespace "tiller-world" created
+
+$ kubectl create serviceaccount tiller --namespace tiller-world
+serviceaccount "tiller" created
+
+

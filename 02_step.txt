@@ -1,0 +1,17 @@
+Define a Role that allows Tiller to manage all resources in tiller-world like in role-tiller.yaml:
+
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: tiller-manager
+  namespace: tiller-world
+rules:
+- apiGroups: ["", "batch", "extensions", "apps"]
+  resources: ["*"]
+  verbs: ["*"]
+
+
+$ kubectl create -f role-tiller.yaml
+role "tiller-manager" created
+
+
